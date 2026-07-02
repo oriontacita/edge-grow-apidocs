@@ -73,7 +73,7 @@ Response 401:
 GET /api/dashboard  <br>
 Description: Mendapatkan data ringkasan dashboard  <br>
 Headers:
-  Authorization: Bearer <token>
+  Authorization: Bearer <token> <br>
 Response 200:
 {
   "success": true | boolean,
