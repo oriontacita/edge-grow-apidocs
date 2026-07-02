@@ -178,19 +178,6 @@ Response 201:
 {
   "success": true | boolean,
   "message": "Toddler created successfully" | string,
-  "data": {
-    "toddler": {
-      "id": 1 | integer,
-      "toddler_full_name": "Ahmad Fauzi" | string,
-      "biological_mother_name": "Siti Aminah" | string,
-      "date_of_birth": "2024-01-15" | string,
-      "gender": "male" | string,
-      "birth_weight": 3.2 | float,
-      "birth_length": 50.0 | float,
-      "created_at": "2024-01-20T10:00:00Z" | string,
-      "updated_at": "2024-01-20T10:00:00Z" | string
-    } | object
-  } | object
 }
 Response 422:
 {
@@ -220,19 +207,6 @@ Response 200:
 {
   "success": true | boolean,
   "message": "Toddler updated successfully" | string,
-  "data": {
-    "toddler": {
-      "id": 1 | integer,
-      "toddler_full_name": "Ahmad Fauzi bin Abdullah" | string,
-      "biological_mother_name": "Siti Aminah" | string,
-      "date_of_birth": "2024-01-15" | string,
-      "gender": "male" | string,
-      "birth_weight": 3.2 | float,
-      "birth_length": 50.0 | float,
-      "created_at": "2024-01-20T10:00:00Z" | string,
-      "updated_at": "2024-01-25T14:30:00Z" | string
-    } | object
-  } | object
 }
 Response 404:
 {
@@ -344,17 +318,6 @@ Response 201:
 {
   "success": true | boolean,
   "message": "Measurement created successfully" | string,
-  "data": {
-    "measurement": {
-      "id": 1 | integer,
-      "toddler_id": 1 | integer,
-      "measurement_date": "2024-06-15" | string,
-      "current_age": 5 | integer,
-      "current_weight": 7.5 | float,
-      "current_length": 65.0 | float,
-      "breastfeeding": "exclusive" | string
-    } | object
-  } | object
 }
 Response 404:
 {
@@ -388,19 +351,6 @@ Response 200:
 {
   "success": true | boolean,
   "message": "Measurement updated successfully" | string,
-  "data": {
-    "measurement": {
-      "id": 1 | integer,
-      "toddler_id": 1 | integer,
-      "measurement_date": "2024-06-15" | string,
-      "current_age": 5 | integer,
-      "current_weight": 7.8 | float,
-      "current_length": 65.5 | float,
-      "breastfeeding": "partial" | string,
-      "created_at": "2024-06-15T10:00:00Z" | string,
-      "updated_at": "2024-06-20T14:30:00Z" | string
-    } | object
-  } | object
 }
 
 ---
@@ -496,17 +446,6 @@ Response 201:
 {
   "success": true | boolean,
   "message": "User created successfully" | string,
-  "data": {
-    "user": {
-      "id": 1 | integer,
-      "full_name": "Siti Aminah" | string,
-      "username": "Siti Aminah" | string,
-      "pin": "123" | string,
-      "gender": "male" | string,
-      "created_at": "2024-01-20T10:00:00Z" | string,
-      "updated_at": "2024-01-20T10:00:00Z" | string
-    } | object
-  } | object
 }
 Response 422:
 {
@@ -534,17 +473,6 @@ Response 200:
 {
   "success": true | boolean,
   "message": "User updated successfully" | string,
-  "data": {
-    "user": {
-      "id": 1 | integer,
-      "full_name": "Siti Aminah" | string,
-      "username": "Siti Aminah" | string,
-      "pin": "123" | string,
-      "gender": "male" | string,
-      "created_at": "2024-01-20T10:00:00Z" | string,
-      "updated_at": "2024-01-25T14:30:00Z" | string
-    } | object
-  } | object
 }
 Response 404:
 {
@@ -572,3 +500,90 @@ Response 404:
   "message": "User not found" | string,
   "data": null
 }
+
+# ============================================
+# syncronize
+# ============================================
+POST /api/syncronize  <br>
+Description: mensinkronkan data ke server pusat  <br>
+Headers:
+  Authorization: Bearer <token>
+  Content-Type: application/json <br>
+Body:
+{
+"toddler": {
+    "toddler_full_name": "Ahmad Fauzi" | string,
+    "biological_mother_name": "Siti Aminah" | string,
+    "date_of_birth": "2024-01-15" | string,
+    "gender": "male" | string,
+    "birth_weight": 3.2 | float,
+    "birth_length": 50.0 | float
+  }, ....,
+  "measurement": {
+     "measurement_date": "2024-06-15" | string,
+    "current_weight": 7.5 | float,
+    "current_length": 65.0 | float,
+    "breastfeeding": "exclusive" | string
+  }
+  
+}
+Response 201:
+{
+  "success": true | boolean,
+  "message": "data syncronized successfully" | string,
+}
+
+# ============================================
+# settings
+# ============================================
+GET /api/settings/{user_id}  <br>
+Description: Mendapatkan detail user berdasarkan ID  <br>
+Headers:
+  Authorization: Bearer <token> <br>
+Path Parameters: user_id: integer <br>
+Response 200:
+{
+  "success": true | boolean,
+  "message": "User retrieved" | string,
+  "data": {
+    "user": {
+      "id": 1 | integer,
+      "full_name": "Siti Aminah" | string,
+      "username": "Siti Aminah" | string,
+      "pin": "123" | string,
+      "gender": "male" | string
+    } | object
+  } | object
+}
+Response 404:
+{
+  "success": false | boolean,
+  "message": "User not found" | string,
+  "data": null
+}
+
+PUT /api/settings/edit/{user_id}  <br>
+Description: Mengubah data user (full update)  <br>
+Headers:
+  Authorization: Bearer <token>
+  Content-Type: application/json <br>
+Path Parameters: user_id: integer <br>
+Body:
+{
+  "full_name": "Siti Aminah" | string,
+  "username": "Siti Aminah" | string,
+  "pin": "123" | string,
+  "gender": "male" | string
+}
+Response 200:
+{
+  "success": true | boolean,
+  "message": "User updated successfully" | string,
+}
+Response 404:
+{
+  "success": false | boolean,
+  "message": "User not found" | string,
+  "data": null
+}
+
