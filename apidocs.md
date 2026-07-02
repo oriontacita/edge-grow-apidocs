@@ -42,7 +42,7 @@
 # AUTHENTICATION
 # ============================================
 
-POST /api/auth/login
+POST /api/auth/login <br>
 Description: Login ke akun
 Headers:
   Content-Type: application/json
