@@ -104,7 +104,7 @@ Response 401:
 GET /api/toddlers  <br>
 Description: Mendapatkan semua data balita  <br>
 Headers:
-  Authorization: Bearer <token>
+  Authorization: Bearer <token> <br>
 Query Parameters:
   - gender: string (optional: "male" | "female")
 Response 200:
@@ -134,7 +134,7 @@ Response 200:
 GET /api/toddlers/view/{toddler_id}  <br>
 Description: Mendapatkan detail balita berdasarkan ID  <br>
 Headers:
-  Authorization: Bearer <token>
+  Authorization: Bearer <token> <br>
 Path Parameters:
   - toddler_id: integer
 Response 200:
@@ -166,7 +166,7 @@ POST /api/toddlers/add  <br>
 Description: Menambahkan data balita baru  <br>
 Headers:
   Authorization: Bearer <token>
-  Content-Type: application/json
+  Content-Type: application/json <br>
 Body:
 {
   "toddler_full_name": "Ahmad Fauzi" | string,
@@ -207,7 +207,7 @@ PUT /api/toddlers/edit/{toddler_id}  <br>
 Description: Mengubah data balita (full update)  <br>
 Headers: 
   Authorization: Bearer <token>
-  Content-Type: application/json
+  Content-Type: application/json <br>
 Path Parameters:
   - toddler_id: integer
 Body:
@@ -337,7 +337,7 @@ POST /api/toddlers/{toddler_id}/measurements/add  <br>
 Description: Menambahkan pengukuran baru untuk balita tertentu  <br>
 Headers:
   Authorization: Bearer <token>
-  Content-Type: application/json
+  Content-Type: application/json <br>
 Path Parameters:
   - toddler_id: integer
 Body:
@@ -416,7 +416,7 @@ Response 200:
 DELETE /api/measurements/delete/{measurement_id}  <br>
 Description: Menghapus data pengukuran  <br>
 Headers:
-  Authorization: Bearer <token>
+  Authorization: Bearer <token> <br>
 Path Parameters:
   - measurement_id: integer
 Response 200:
@@ -532,7 +532,7 @@ PUT /api/users/edit/{user_id}  <br>
 Description: Mengubah data user (full update)  <br>
 Headers:
   Authorization: Bearer <token>
-  Content-Type: application/json
+  Content-Type: application/json <br>
 Path Parameters:
   - user_id: integer
 Body:
