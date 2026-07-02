@@ -345,7 +345,7 @@ Body:
   "measurement_date": "2024-06-15" | string,
   "current_weight": 7.8 | float,
   "current_length": 65.5 | float,
-  "breastfeeding": "partial" | string
+  "breastfeeding": "yes" | enum["yes", "no]
 }
 Response 200:
 {
