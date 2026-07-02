@@ -257,7 +257,7 @@ Response 200:
         "current_age": 5 | integer,
         "current_weight": 7.5 | float,
         "current_length": 65.0 | float,
-        "breastfeeding": "exclusive" | string,
+        "breastfeeding": "yes" | enum["yes", "no],
         "created_at": "2024-06-15T10:00:00Z" | string
       }
     ] | array
@@ -284,7 +284,7 @@ Response 200:
       "current_age": 5 | integer,
       "current_weight": 7.5 | float,
       "current_length": 65.0 | float,
-      "breastfeeding": "exclusive" | string,
+      "breastfeeding": "yes" | enum["yes", "no],
       "weight_status": "normal" | string,
       "length_status": "normal" | string,
       "created_at": "2024-06-15T10:00:00Z" | string,
@@ -312,7 +312,7 @@ Body:
   "measurement_date": "2024-06-15" | string,
   "current_weight": 7.5 | float,
   "current_length": 65.0 | float,
-  "breastfeeding": "exclusive" | string
+  "breastfeeding": "yes" | enum["yes", "no]
 }
 Response 201:
 {
@@ -528,7 +528,7 @@ Body:
      "measurement_date": "2024-06-15" | string,
     "current_weight": 7.5 | float,
     "current_length": 65.0 | float,
-    "breastfeeding": "exclusive" | string
+    "breastfeeding": "yes" | enum["yes", "no]
   }
   
 }
