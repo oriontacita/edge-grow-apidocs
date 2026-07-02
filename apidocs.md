@@ -49,7 +49,7 @@ Headers:
 Body:
 {
   "username": "Ny. Sri Rahayu" | string,
-  "pin": 123456 | integer
+  "pin": 123456 | string
 }
 
 Response 200:
@@ -84,7 +84,7 @@ Response 200:
         "id": 1 | integer,
         "toddler_full_name": "string" | string,
         "date_of_birth": "2024-01-01" | string,
-        "gender": "male" | string
+        "gender": "male" | enum["male", "female"]
       },
       ....
     ] | array
@@ -116,8 +116,8 @@ Response 200:
         "id": 1 | integer,
         "toddler_full_name": "Ahmad Fauzi" | string,
         "biological_mother_name": "Siti Aminah" | string,
-        "date_of_birth": "2024-01-15" | string,
-        "gender": "male" | string,
+        "date_of_birth": "2024-01-15" | date,
+        "gender": "male" | enum["male", "female"],
         "birth_weight": 3.2 | float,
         "birth_length": 50.0 | float,
         "created_at": "2024-01-20T10:00:00Z" | string,
@@ -144,8 +144,8 @@ Response 200:
       "id": 1 | integer,
       "toddler_full_name": "Ahmad Fauzi" | string,
       "biological_mother_name": "Siti Aminah" | string,
-      "date_of_birth": "2024-01-15" | string,
-      "gender": "male" | string,
+      "date_of_birth": "2024-01-15" | date,
+      "gender": "male" | enum["male", "female"],
       "birth_weight": 3.2 | float,
       "birth_length": 50.0 | float
     } | object
@@ -169,8 +169,8 @@ Body:
 {
   "toddler_full_name": "Ahmad Fauzi" | string,
   "biological_mother_name": "Siti Aminah" | string,
-  "date_of_birth": "2024-01-15" | string,
-  "gender": "male" | string,
+  "date_of_birth": "2024-01-15" | date,
+  "gender": "male" | enum["male", "female"],
   "birth_weight": 3.2 | float,
   "birth_length": 50.0 | float
 }
@@ -198,8 +198,8 @@ Body:
 {
   "toddler_full_name": "Ahmad Fauzi bin Abdullah" | string,
   "biological_mother_name": "Siti Aminah" | string,
-  "date_of_birth": "2024-01-15" | string,
-  "gender": "male" | string,
+  "date_of_birth": "2024-01-15" | date,
+  "gender": "male" | enum["male", "female"],
   "birth_weight": 3.2 | float,
   "birth_length": 50.0 | float
 }
@@ -393,8 +393,9 @@ Response 200:
         "full_name": "Siti Aminah" | string,
         "username": "Siti Aminah" | string,
         "pin": "123" | string,
-        "gender": "male" | string
-      },
+        "gender": "male" | enum["male", "female"]
+        "role": "cadre" | enum["admin", "cadre]
+      }
       .....
     ] | array
   } | object
@@ -417,7 +418,9 @@ Response 200:
       "full_name": "Siti Aminah" | string,
       "username": "Siti Aminah" | string,
       "pin": "123" | string,
-      "gender": "male" | string
+      "gender": "male" | enum["male", "female"],
+      "role": "cadre" | enum["admin", "cadre]
+
     } | object
   } | object
 }
@@ -440,7 +443,9 @@ Body:
   "full_name": "Siti Aminah" | string,
   "username": "Siti Aminah" | string,
   "pin": "123" | string,
-  "gender": "male" | string
+  "gender": "male" | enum["male", "female"],
+  "role": "cadre" | enum["admin", "cadre]
+
 }
 Response 201:
 {
@@ -467,7 +472,7 @@ Body:
   "full_name": "Siti Aminah" | string,
   "username": "Siti Aminah" | string,
   "pin": "123" | string,
-  "gender": "male" | string
+  "gender": "male" | enum["male", "female"]
 }
 Response 200:
 {
@@ -514,8 +519,8 @@ Body:
 "toddler": {
     "toddler_full_name": "Ahmad Fauzi" | string,
     "biological_mother_name": "Siti Aminah" | string,
-    "date_of_birth": "2024-01-15" | string,
-    "gender": "male" | string,
+    "date_of_birth": "2024-01-15" | date,
+    "gender": "male" | enum["male", "female"],
     "birth_weight": 3.2 | float,
     "birth_length": 50.0 | float
   }, ....,
@@ -551,7 +556,8 @@ Response 200:
       "full_name": "Siti Aminah" | string,
       "username": "Siti Aminah" | string,
       "pin": "123" | string,
-      "gender": "male" | string
+      "gender": "male" | enum["male", "female"]
+      "role": "cadre" | enum["admin", "cadre]
     } | object
   } | object
 }
@@ -573,7 +579,7 @@ Body:
   "full_name": "Siti Aminah" | string,
   "username": "Siti Aminah" | string,
   "pin": "123" | string,
-  "gender": "male" | string
+  "gender": "male" | enum["male", "female"]
 }
 Response 200:
 {
