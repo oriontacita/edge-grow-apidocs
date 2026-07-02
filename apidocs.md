@@ -120,6 +120,7 @@ Response 200:
         "gender": "male" | enum["male", "female"],
         "birth_weight": 3.2 | float,
         "birth_length": 50.0 | float,
+        "status": "normal | enum(["normal", "risk", "stunted]),
         "created_at": "2024-01-20T10:00:00Z" | string,
         "updated_at": "2024-01-20T10:00:00Z" | string
       },
@@ -148,6 +149,8 @@ Response 200:
       "gender": "male" | enum["male", "female"],
       "birth_weight": 3.2 | float,
       "birth_length": 50.0 | float
+      "status": "normal | enum(["normal", "risk", "stunted]),
+
     } | object
   } | object
 }
@@ -202,6 +205,7 @@ Body:
   "gender": "male" | enum["male", "female"],
   "birth_weight": 3.2 | float,
   "birth_length": 50.0 | float
+  "status": "normal | enum(["normal", "risk", "stunted]),
 }
 Response 200:
 {
@@ -285,8 +289,6 @@ Response 200:
       "current_weight": 7.5 | float,
       "current_length": 65.0 | float,
       "breastfeeding": "yes" | enum["yes", "no],
-      "weight_status": "normal" | string,
-      "length_status": "normal" | string,
       "created_at": "2024-06-15T10:00:00Z" | string,
       "updated_at": "2024-06-15T10:00:00Z" | string
     } | object
