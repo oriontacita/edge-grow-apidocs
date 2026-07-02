@@ -1,8 +1,8 @@
 # ============================================
 # BASE URL
 # ============================================
-# Development: http://localhost:8000/api/v1
-# Production : https://yourdomain.com/api/v1
+# Development: http://localhost:8000/api/
+# Production : https://yourdomain.com/api/
 
 # ============================================
 # COMMON HEADERS
@@ -15,16 +15,16 @@
 # ============================================
 # Success:
 # {
-#   "success": true,
-#   "message": "string",
-#   "data": {} or []
+#   "success": true | boolean,
+#   "message": "string" | string,
+#   "data": {} | object or [] | array or null
 # }
 #
 # Error:
 # {
-#   "success": false,
-#   "message": "string",
-#   "errors": {} or null
+#   "success": false | boolean,
+#   "message": "string" | string,
+#   "errors": {} | object or null
 # }
 
 # ============================================
@@ -42,50 +42,27 @@
 # AUTHENTICATION
 # ============================================
 
-POST /api/auth/register
-Description: Mendaftar akun baru
-Headers:
-  Content-Type: application/json
-Body:
-{
-  "username": "string (3-50 karakter)",
-  "pin": 123456
-}
-Response 201:
-{
-  "message": "Registration successful",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-}
-Response 409:
-{
-  "message": "Username or email already exists",
-  "data": null
-}
-Response 422:
-{
-  "message": "Validation error",
-}
-
----
-
 POST /api/auth/login
 Description: Login ke akun
 Headers:
   Content-Type: application/json
 Body:
 {
-  "username": "string",
-  "pin": 123456
+  "username": "Ny. Sri Rahayu" | string,
+  "pin": 123456 | integer
 }
+
 Response 200:
 {
-  "message": "Login successful",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "success": true | boolean,
+  "message": "Login successful" | string,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." | string
 }
+
 Response 401:
 {
-  "message": "Invalid username or PIN",
+  "success": false | boolean,
+  "message": "Invalid username or PIN" | string,
   "data": null
 }
 
@@ -99,23 +76,24 @@ Headers:
   Authorization: Bearer <token>
 Response 200:
 {
-  "message": "Dashboard data retrieved",
+  "success": true | boolean,
+  "message": "Dashboard data retrieved" | string,
   "data": {
     "toddlers": [
       {
-        "id": 1,
-        "toddler_full_name": "string",
-        "date_of_birth": "2024-01-01",
-        "gender": "male"
+        "id": 1 | integer,
+        "toddler_full_name": "string" | string,
+        "date_of_birth": "2024-01-01" | string,
+        "gender": "male" | string
       },
       ....
-    ]
-  }
+    ] | array
+  } | object
 }
 Response 401:
 {
-  "success": false,
-  "message": "Invalid or expired token",
+  "success": false | boolean,
+  "message": "Invalid or expired token" | string,
   "data": null
 }
 
@@ -131,24 +109,24 @@ Query Parameters:
   - gender: string (optional: "male" | "female")
 Response 200:
 {
-  "success": true,
-  "message": "Toddlers retrieved",
+  "success": true | boolean,
+  "message": "Toddlers retrieved" | string,
   "data": {
     "toddlers": [
       {
-        "id": 1,
-        "toddler_full_name": "Ahmad Fauzi",
-        "biological_mother_name": "Siti Aminah",
-        "date_of_birth": "2024-01-15",
-        "gender": "male",
-        "birth_weight": 3.2,
-        "birth_length": 50.0,
-        "created_at": "2024-01-20T10:00:00Z",
-        "updated_at": "2024-01-20T10:00:00Z"
+        "id": 1 | integer,
+        "toddler_full_name": "Ahmad Fauzi" | string,
+        "biological_mother_name": "Siti Aminah" | string,
+        "date_of_birth": "2024-01-15" | string,
+        "gender": "male" | string,
+        "birth_weight": 3.2 | float,
+        "birth_length": 50.0 | float,
+        "created_at": "2024-01-20T10:00:00Z" | string,
+        "updated_at": "2024-01-20T10:00:00Z" | string
       },
       .....
-    ]
-  }
+    ] | array
+  } | object
 }
 
 ---
@@ -161,22 +139,24 @@ Path Parameters:
   - toddler_id: integer
 Response 200:
 {
-  "message": "Toddler retrieved",
+  "success": true | boolean,
+  "message": "Toddler retrieved" | string,
   "data": {
     "toddler": {
-      "id": 1,
-      "toddler_full_name": "Ahmad Fauzi",
-      "biological_mother_name": "Siti Aminah",
-      "date_of_birth": "2024-01-15",
-      "gender": "male",
-      "birth_weight": 3.2,
-      "birth_length": 50.0,
-    }
-  }
+      "id": 1 | integer,
+      "toddler_full_name": "Ahmad Fauzi" | string,
+      "biological_mother_name": "Siti Aminah" | string,
+      "date_of_birth": "2024-01-15" | string,
+      "gender": "male" | string,
+      "birth_weight": 3.2 | float,
+      "birth_length": 50.0 | float
+    } | object
+  } | object
 }
 Response 404:
 {
-  "message": "Toddler not found",
+  "success": false | boolean,
+  "message": "Toddler not found" | string,
   "data": null
 }
 
@@ -189,34 +169,36 @@ Headers:
   Content-Type: application/json
 Body:
 {
-  "toddler_full_name": "Ahmad Fauzi",
-  "biological_mother_name": "Siti Aminah",
-  "date_of_birth": "2024-01-15",
-  "gender": "male",
-  "birth_weight": 3.2,
-  "birth_length": 50.0
+  "toddler_full_name": "Ahmad Fauzi" | string,
+  "biological_mother_name": "Siti Aminah" | string,
+  "date_of_birth": "2024-01-15" | string,
+  "gender": "male" | string,
+  "birth_weight": 3.2 | float,
+  "birth_length": 50.0 | float
 }
 Response 201:
 {
-  "success": true,
-  "message": "Toddler created successfully",
+  "success": true | boolean,
+  "message": "Toddler created successfully" | string,
   "data": {
     "toddler": {
-      "id": 1,
-      "toddler_full_name": "Ahmad Fauzi",
-      "biological_mother_name": "Siti Aminah",
-      "date_of_birth": "2024-01-15",
-      "gender": "male",
-      "birth_weight": 3.2,
-      "birth_length": 50.0,
-      "created_at": "2024-01-20T10:00:00Z",
-      "updated_at": "2024-01-20T10:00:00Z"
-    }
-  }
+      "id": 1 | integer,
+      "toddler_full_name": "Ahmad Fauzi" | string,
+      "biological_mother_name": "Siti Aminah" | string,
+      "date_of_birth": "2024-01-15" | string,
+      "gender": "male" | string,
+      "birth_weight": 3.2 | float,
+      "birth_length": 50.0 | float,
+      "created_at": "2024-01-20T10:00:00Z" | string,
+      "updated_at": "2024-01-20T10:00:00Z" | string
+    } | object
+  } | object
 }
 Response 422:
 {
-  "message": "Validation error",
+  "success": false | boolean,
+  "message": "Validation error" | string,
+  "errors": {} | object
 }
 
 ---
@@ -230,33 +212,35 @@ Path Parameters:
   - toddler_id: integer
 Body:
 {
-  "toddler_full_name": "Ahmad Fauzi bin Abdullah",
-  "biological_mother_name": "Siti Aminah",
-  "date_of_birth": "2024-01-15",
-  "gender": "male",
-  "birth_weight": 3.2,
-  "birth_length": 50.0
+  "toddler_full_name": "Ahmad Fauzi bin Abdullah" | string,
+  "biological_mother_name": "Siti Aminah" | string,
+  "date_of_birth": "2024-01-15" | string,
+  "gender": "male" | string,
+  "birth_weight": 3.2 | float,
+  "birth_length": 50.0 | float
 }
 Response 200:
 {
-  "message": "Toddler updated successfully",
+  "success": true | boolean,
+  "message": "Toddler updated successfully" | string,
   "data": {
     "toddler": {
-      "id": 1,
-      "toddler_full_name": "Ahmad Fauzi bin Abdullah",
-      "biological_mother_name": "Siti Aminah",
-      "date_of_birth": "2024-01-15",
-      "gender": "male",
-      "birth_weight": 3.2,
-      "birth_length": 50.0,
-      "created_at": "2024-01-20T10:00:00Z",
-      "updated_at": "2024-01-25T14:30:00Z"
-    }
-  }
+      "id": 1 | integer,
+      "toddler_full_name": "Ahmad Fauzi bin Abdullah" | string,
+      "biological_mother_name": "Siti Aminah" | string,
+      "date_of_birth": "2024-01-15" | string,
+      "gender": "male" | string,
+      "birth_weight": 3.2 | float,
+      "birth_length": 50.0 | float,
+      "created_at": "2024-01-20T10:00:00Z" | string,
+      "updated_at": "2024-01-25T14:30:00Z" | string
+    } | object
+  } | object
 }
 Response 404:
 {
-  "message": "Toddler not found",
+  "success": false | boolean,
+  "message": "Toddler not found" | string,
   "data": null
 }
 
@@ -270,12 +254,14 @@ Path Parameters:
   - toddler_id: integer
 Response 200:
 {
-  "message": "Toddler deleted successfully",
+  "success": true | boolean,
+  "message": "Toddler deleted successfully" | string,
   "data": null
 }
 Response 404:
-{,
-  "message": "Toddler not found",
+{
+  "success": false | boolean,
+  "message": "Toddler not found" | string,
   "data": null
 }
 
@@ -291,22 +277,22 @@ Path Parameters:
   - toddler_id: integer
 Response 200:
 {
-  "success": true,
-  "message": "Measurements retrieved",
+  "success": true | boolean,
+  "message": "Measurements retrieved" | string,
   "data": {
-    "toddler_id": 1,
+    "toddler_id": 1 | integer,
     "measurements": [
       {
-        "id": 1,
-        "measurement_date": "2024-06-15",
-        "current_age": 5,
-        "current_weight": 7.5,
-        "current_length": 65.0,
-        "breastfeeding": "exclusive",
-        "created_at": "2024-06-15T10:00:00Z"
+        "id": 1 | integer,
+        "measurement_date": "2024-06-15" | string,
+        "current_age": 5 | integer,
+        "current_weight": 7.5 | float,
+        "current_length": 65.0 | float,
+        "breastfeeding": "exclusive" | string,
+        "created_at": "2024-06-15T10:00:00Z" | string
       }
-    ]
-  }
+    ] | array
+  } | object
 }
 
 ---
@@ -319,27 +305,29 @@ Path Parameters:
   - measurement_id: integer
 Response 200:
 {
-  "message": "Measurement retrieved",
+  "success": true | boolean,
+  "message": "Measurement retrieved" | string,
   "data": {
     "measurement": {
-      "id": 1,
-      "toddler_id": 1,
-      "toddler_name": "Ahmad Fauzi",
-      "measurement_date": "2024-06-15",
-      "current_age": 5,
-      "current_weight": 7.5,
-      "current_length": 65.0,
-      "breastfeeding": "exclusive",
-      "weight_status": "normal",
-      "length_status": "normal",
-      "created_at": "2024-06-15T10:00:00Z",
-      "updated_at": "2024-06-15T10:00:00Z"
-    }
-  }
+      "id": 1 | integer,
+      "toddler_id": 1 | integer,
+      "toddler_name": "Ahmad Fauzi" | string,
+      "measurement_date": "2024-06-15" | string,
+      "current_age": 5 | integer,
+      "current_weight": 7.5 | float,
+      "current_length": 65.0 | float,
+      "breastfeeding": "exclusive" | string,
+      "weight_status": "normal" | string,
+      "length_status": "normal" | string,
+      "created_at": "2024-06-15T10:00:00Z" | string,
+      "updated_at": "2024-06-15T10:00:00Z" | string
+    } | object
+  } | object
 }
 Response 404:
 {
-  "message": "Measurement not found",
+  "success": false | boolean,
+  "message": "Measurement not found" | string,
   "data": null
 }
 
@@ -354,35 +342,38 @@ Path Parameters:
   - toddler_id: integer
 Body:
 {
-  "measurement_date": "2024-06-15",
-  "current_weight": 7.5,
-  "current_length": 65.0,
-  "breastfeeding": "exclusive"
+  "measurement_date": "2024-06-15" | string,
+  "current_weight": 7.5 | float,
+  "current_length": 65.0 | float,
+  "breastfeeding": "exclusive" | string
 }
 Response 201:
 {
-  "message": "Measurement created successfully",
+  "success": true | boolean,
+  "message": "Measurement created successfully" | string,
   "data": {
     "measurement": {
-      "id": 1,
-      "toddler_id": 1,
-      "measurement_date": "2024-06-15",
-      "current_age": 5,
-      "current_weight": 7.5,
-      "current_length": 65.0,
-      "breastfeeding": "exclusive",
-    }
-  }
+      "id": 1 | integer,
+      "toddler_id": 1 | integer,
+      "measurement_date": "2024-06-15" | string,
+      "current_age": 5 | integer,
+      "current_weight": 7.5 | float,
+      "current_length": 65.0 | float,
+      "breastfeeding": "exclusive" | string
+    } | object
+  } | object
 }
 Response 404:
 {
-  "success": false,
-  "message": "Toddler not found",
+  "success": false | boolean,
+  "message": "Toddler not found" | string,
   "data": null
 }
 Response 422:
 {
-  "message": "Validation error",
+  "success": false | boolean,
+  "message": "Validation error" | string,
+  "errors": {} | object
 }
 
 ---
@@ -396,22 +387,33 @@ Path Parameters:
   - measurement_id: integer
 Body:
 {
-  "measurement_date": "2024-06-15",
-  "current_weight": 7.8,
-  "current_length": 65.5,
-  "breastfeeding": "partial"
+  "measurement_date": "2024-06-15" | string,
+  "current_weight": 7.8 | float,
+  "current_length": 65.5 | float,
+  "breastfeeding": "partial" | string
 }
 Response 200:
 {
-  "message": "Measurement updated successfully",
+  "success": true | boolean,
+  "message": "Measurement updated successfully" | string,
   "data": {
-    "measurement": { ... }
-  }
+    "measurement": {
+      "id": 1 | integer,
+      "toddler_id": 1 | integer,
+      "measurement_date": "2024-06-15" | string,
+      "current_age": 5 | integer,
+      "current_weight": 7.8 | float,
+      "current_length": 65.5 | float,
+      "breastfeeding": "partial" | string,
+      "created_at": "2024-06-15T10:00:00Z" | string,
+      "updated_at": "2024-06-20T14:30:00Z" | string
+    } | object
+  } | object
 }
 
 ---
 
-DELETE /api/measurements/{measurement_id}/delete
+DELETE /api/measurements/delete/{measurement_id}
 Description: Menghapus data pengukuran
 Headers:
   Authorization: Bearer <token>
@@ -419,12 +421,14 @@ Path Parameters:
   - measurement_id: integer
 Response 200:
 {
-  "message": "Measurement deleted successfully",
+  "success": true | boolean,
+  "message": "Measurement deleted successfully" | string,
   "data": null
 }
 Response 404:
 {
-  "message": "Measurement not found",
+  "success": false | boolean,
+  "message": "Measurement not found" | string,
   "data": null
 }
 
@@ -437,28 +441,28 @@ Description: Mendapatkan semua data user
 Headers:
   Authorization: Bearer <token>
 Query Parameters:
-)
   - gender: string (optional: "male" | "female")
 Response 200:
 {
-  "message": "users retrieved",
+  "success": true | boolean,
+  "message": "Users retrieved" | string,
   "data": {
     "users": [
       {
-        "id": 1,
-        "full_name": "Siti Aminah",
-        "username": "Siti Aminah",
-        "pin": "123",
-        "gender": "male",
+        "id": 1 | integer,
+        "full_name": "Siti Aminah" | string,
+        "username": "Siti Aminah" | string,
+        "pin": "123" | string,
+        "gender": "male" | string
       },
       .....
-    ]
-  }
+    ] | array
+  } | object
 }
 
 ---
 
-GET /api/users/view/{toddler_id}
+GET /api/users/view/{user_id}
 Description: Mendapatkan detail user berdasarkan ID
 Headers:
   Authorization: Bearer <token>
@@ -466,47 +470,60 @@ Path Parameters:
   - user_id: integer
 Response 200:
 {
-  "success": true,
-  "message": "user retrieved",
+  "success": true | boolean,
+  "message": "User retrieved" | string,
   "data": {
     "user": {
-        "id": 1,
-        "full_name": "Siti Aminah",
-        "username": "Siti Aminah",
-        "pin": "123",
-        "gender": "male",
-    }
-  }
+      "id": 1 | integer,
+      "full_name": "Siti Aminah" | string,
+      "username": "Siti Aminah" | string,
+      "pin": "123" | string,
+      "gender": "male" | string
+    } | object
+  } | object
 }
 Response 404:
 {
-  "message": "user not found",
+  "success": false | boolean,
+  "message": "User not found" | string,
   "data": null
 }
 
 ---
 
-POST /api/userss/add
+POST /api/users/add
 Description: Menambahkan data user baru
 Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
 Body:
 {
-  id": 1,
-        "full_name": "Siti Aminah",
-        "username": "Siti Aminah",
-        "pin": "123",
-        "gender": "male",
+  "full_name": "Siti Aminah" | string,
+  "username": "Siti Aminah" | string,
+  "pin": "123" | string,
+  "gender": "male" | string
 }
 Response 201:
 {
-  "success": true,
-  "message": "user created successfully",
+  "success": true | boolean,
+  "message": "User created successfully" | string,
+  "data": {
+    "user": {
+      "id": 1 | integer,
+      "full_name": "Siti Aminah" | string,
+      "username": "Siti Aminah" | string,
+      "pin": "123" | string,
+      "gender": "male" | string,
+      "created_at": "2024-01-20T10:00:00Z" | string,
+      "updated_at": "2024-01-20T10:00:00Z" | string
+    } | object
+  } | object
 }
 Response 422:
 {
-  "message": "Validation error",
+  "success": false | boolean,
+  "message": "Validation error" | string,
+  "errors": {} | object
 }
 
 ---
@@ -517,50 +534,54 @@ Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
 Path Parameters:
-  - toddler_id: integer
+  - user_id: integer
 Body:
 {
-        "id": 1,
-        "full_name": "Siti Aminah",
-        "username": "Siti Aminah",
-        "pin": "123",
-        "gender": "male",
+  "full_name": "Siti Aminah" | string,
+  "username": "Siti Aminah" | string,
+  "pin": "123" | string,
+  "gender": "male" | string
 }
 Response 200:
 {
-  
-  "message": "user updated successfully",
+  "success": true | boolean,
+  "message": "User updated successfully" | string,
   "data": {
     "user": {
-        "id": 1,
-        "full_name": "Siti Aminah",
-        "username": "Siti Aminah",
-        "pin": "123",
-        "gender": "male",
-    }
-  }
+      "id": 1 | integer,
+      "full_name": "Siti Aminah" | string,
+      "username": "Siti Aminah" | string,
+      "pin": "123" | string,
+      "gender": "male" | string,
+      "created_at": "2024-01-20T10:00:00Z" | string,
+      "updated_at": "2024-01-25T14:30:00Z" | string
+    } | object
+  } | object
 }
 Response 404:
 {
-  "message": "Toddler not found",
+  "success": false | boolean,
+  "message": "User not found" | string,
   "data": null
 }
 
 ---
 
-DELETE /api/uses/delete/{user_id}
+DELETE /api/users/delete/{user_id}
 Description: Menghapus data user
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
-  - toddler_id: integer
+  - user_id: integer
 Response 200:
 {
-  "message": "user deleted successfully",
+  "success": true | boolean,
+  "message": "User deleted successfully" | string,
   "data": null
 }
 Response 404:
 {
-  "message": "user not found",
+  "success": false | boolean,
+  "message": "User not found" | string,
   "data": null
 }
