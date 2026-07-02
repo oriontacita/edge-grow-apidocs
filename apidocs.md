@@ -43,7 +43,7 @@
 # ============================================
 
 POST /api/auth/login <br>
-Description: Login ke akun
+Description: Login ke akun  <br>
 Headers:
   Content-Type: application/json
 Body:
@@ -70,8 +70,8 @@ Response 401:
 # DASHBOARD
 # ============================================
 
-GET /api/dashboard
-Description: Mendapatkan data ringkasan dashboard
+GET /api/dashboard  <br>
+Description: Mendapatkan data ringkasan dashboard  <br>
 Headers:
   Authorization: Bearer <token>
 Response 200:
@@ -101,8 +101,8 @@ Response 401:
 # TODDLERS
 # ============================================
 
-GET /api/toddlers
-Description: Mendapatkan semua data balita
+GET /api/toddlers  <br>
+Description: Mendapatkan semua data balita  <br>
 Headers:
   Authorization: Bearer <token>
 Query Parameters:
@@ -131,8 +131,8 @@ Response 200:
 
 ---
 
-GET /api/toddlers/view/{toddler_id}
-Description: Mendapatkan detail balita berdasarkan ID
+GET /api/toddlers/view/{toddler_id}  <br>
+Description: Mendapatkan detail balita berdasarkan ID  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
@@ -162,8 +162,8 @@ Response 404:
 
 ---
 
-POST /api/toddlers/add
-Description: Menambahkan data balita baru
+POST /api/toddlers/add  <br>
+Description: Menambahkan data balita baru  <br>
 Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
@@ -203,9 +203,9 @@ Response 422:
 
 ---
 
-PUT /api/toddlers/edit/{toddler_id}
-Description: Mengubah data balita (full update)
-Headers:
+PUT /api/toddlers/edit/{toddler_id}  <br>
+Description: Mengubah data balita (full update)  <br>
+Headers: 
   Authorization: Bearer <token>
   Content-Type: application/json
 Path Parameters:
@@ -246,8 +246,8 @@ Response 404:
 
 ---
 
-DELETE /api/toddlers/delete/{toddler_id}
-Description: Menghapus data balita
+DELETE /api/toddlers/delete/{toddler_id}  <br>
+Description: Menghapus data balita  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
@@ -269,8 +269,8 @@ Response 404:
 # MEASUREMENTS
 # ============================================
 
-GET /api/toddlers/{toddler_id}/measurements
-Description: Mendapatkan semua pengukuran balita tertentu
+GET /api/toddlers/{toddler_id}/measurements  <br>
+Description: Mendapatkan semua pengukuran balita tertentu  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
@@ -297,8 +297,8 @@ Response 200:
 
 ---
 
-GET /api/measurements/{measurement_id}/detail
-Description: Mendapatkan detail pengukuran berdasarkan ID
+GET /api/measurements/{measurement_id}/detail  <br>
+Description: Mendapatkan detail pengukuran berdasarkan ID  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
@@ -333,8 +333,8 @@ Response 404:
 
 ---
 
-POST /api/toddlers/{toddler_id}/measurements/add
-Description: Menambahkan pengukuran baru untuk balita tertentu
+POST /api/toddlers/{toddler_id}/measurements/add  <br>
+Description: Menambahkan pengukuran baru untuk balita tertentu  <br>
 Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
@@ -378,8 +378,8 @@ Response 422:
 
 ---
 
-PUT /api/measurements/edit/{measurement_id}
-Description: Mengubah data pengukuran
+PUT /api/measurements/edit/{measurement_id}  <br>
+Description: Mengubah data pengukuran  <br>
 Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
@@ -413,8 +413,8 @@ Response 200:
 
 ---
 
-DELETE /api/measurements/delete/{measurement_id}
-Description: Menghapus data pengukuran
+DELETE /api/measurements/delete/{measurement_id}  <br>
+Description: Menghapus data pengukuran  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
@@ -436,8 +436,8 @@ Response 404:
 # USERS
 # ============================================
 
-GET /api/users
-Description: Mendapatkan semua data user
+GET /api/users  <br>
+Description: Mendapatkan semua data user  <br>
 Headers:
   Authorization: Bearer <token>
 Query Parameters:
@@ -462,8 +462,8 @@ Response 200:
 
 ---
 
-GET /api/users/view/{user_id}
-Description: Mendapatkan detail user berdasarkan ID
+GET /api/users/view/{user_id}  <br>
+Description: Mendapatkan detail user berdasarkan ID  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
@@ -491,8 +491,8 @@ Response 404:
 
 ---
 
-POST /api/users/add
-Description: Menambahkan data user baru
+POST /api/users/add  <br>
+Description: Menambahkan data user baru  <br>
 Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
@@ -528,8 +528,8 @@ Response 422:
 
 ---
 
-PUT /api/users/edit/{user_id}
-Description: Mengubah data user (full update)
+PUT /api/users/edit/{user_id}  <br>
+Description: Mengubah data user (full update)  <br>
 Headers:
   Authorization: Bearer <token>
   Content-Type: application/json
@@ -567,8 +567,8 @@ Response 404:
 
 ---
 
-DELETE /api/users/delete/{user_id}
-Description: Menghapus data user
+DELETE /api/users/delete/{user_id}  <br>
+Description: Menghapus data user  <br>
 Headers:
   Authorization: Bearer <token>
 Path Parameters:
