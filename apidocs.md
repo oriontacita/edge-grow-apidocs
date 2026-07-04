@@ -115,6 +115,7 @@ Response 200:
       {
         "id": 1 | integer,
         "toddler_full_name": "Ahmad Fauzi" | string,
+        "age: "13" | str,
         "biological_mother_name": "Siti Aminah" | string,
         "date_of_birth": "2024-01-15" | date,
         "gender": "male" | enum["male", "female"],
@@ -144,6 +145,7 @@ Response 200:
     "toddler": {
       "id": 1 | integer,
       "toddler_full_name": "Ahmad Fauzi" | string,
+      "age: "13" | str,
       "biological_mother_name": "Siti Aminah" | string,
       "date_of_birth": "2024-01-15" | date,
       "gender": "male" | enum["male", "female"],
@@ -200,6 +202,7 @@ Path Parameters: toddler_id: integer <br>
 Body:
 {
   "toddler_full_name": "Ahmad Fauzi bin Abdullah" | string,
+  "age: "13" | str,
   "biological_mother_name": "Siti Aminah" | string,
   "date_of_birth": "2024-01-15" | date,
   "gender": "male" | enum["male", "female"],
